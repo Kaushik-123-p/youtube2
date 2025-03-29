@@ -1,6 +1,6 @@
 
 const asyncHandler = (requestHabdler) => {
-    (req,res,next) =>{
+    return (req,res,next) =>{
         Promise
         .resolve(requestHabdler(req,res,next))
         .catch((error) => next(error))
