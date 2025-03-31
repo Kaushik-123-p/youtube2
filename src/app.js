@@ -22,7 +22,7 @@ app.use(cookieParser())
 import userRouter from "./routes/user.routes.js"
 
 //  declation of router
-app.use("/api/v1/users", userRouter)    //  http://localhost:8000/api/v1/users
+app.use("/api/v1/users", userRouter)    //  http://localhost:8008/api/v1/users
 
 
 

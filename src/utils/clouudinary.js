@@ -1,6 +1,6 @@
 import {v2 as cloudinary} from "cloudinary"
 import fs from "fs"
-import { fileURLToPath } from "url";
+
 
 cloudinary.config({ 
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME, 
@@ -15,11 +15,13 @@ const uploadOnCloudinary = async (localFilePath) => {
 
         //  upload the file on cloudinary
         const response = await cloudinary.uploader.upload(localFilePath, {
-            resource_type: "auto"
+            resource_type: "auto",
+            folder: "youtubeBackend"
         })
 
         //  file has been uploaded successfull
-        console.log("File is Uploaded on  Cloudinary",response.url);
+        // console.log("File is Uploaded on  Cloudinary",response.url);
+        fs.unlinkSync(localFilePath)
         return response;
     } catch (error) {
         fs.unlinkSync(localFilePath)    //  remove the locallly saved temporary file as theupload operation faild \
@@ -27,4 +29,4 @@ const uploadOnCloudinary = async (localFilePath) => {
     }
 }
 
-export default uploadOnCloudinary
+export {uploadOnCloudinary}
